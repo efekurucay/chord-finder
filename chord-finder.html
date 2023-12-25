@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akor Bulucu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        select {
+            font-size: 16px;
+            padding: 5px;
+        }
+        .note-button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Akor Bulucu</h2>
+
+    <label for="akor">Akor Seç:</label>
+    <select id="akor" onchange="showChord()">
+        <option value="Cmaj">C Majör</option>
+        <option value="Dmaj">D Majör</option>
+        <option value="Emaj">E Majör</option>
+        <option value="Fmaj">F Majör</option>
+        <option value="Gmaj">G Majör</option>
+        <option value="Amaj">A Majör</option>
+        <option value="Bmaj">B Majör</option>
+        <option value="Amin">A Minör</option>
+        <option value="Bmin">B Minör</option>
+        <option value="Cmin">C Minör</option>
+        <option value="Dmin">D Minör</option>
+        <option value="Emin">E Minör</option>
+        <option value="Fmin">F Minör</option>
+        <option value="Gmin">G Minör</option>
+    </select>
+
+    <div id="result"></div>
+
+    <div id="noteButtons">
+        <button class="note-button" id="note1" onclick="openLink(1)">-</button>
+        <button class="note-button" id="note2" onclick="openLink(2)">-</button>
+        <button class="note-button" id="note3" onclick="openLink(3)">-</button>
+    </div>
+
+    <script>
+        function showChord() {
+            var selectedChord = document.getElementById("akor").value;
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = getChordNotes(selectedChord);
+            updateNoteButtons(selectedChord);
+        }
+
+        function getChordNotes(chord) {
+            switch (chord) {
+                case "Akor Seçiniz": return "";
+                case "Cmaj": return "C - E - G";
+                case "Dmaj": return "D - F# - A";
+                case "Emaj": return "E - G# - B";
+                case "Fmaj": return "F - A - C";
+                case "Gmaj": return "G - B - D";
+                case "Amaj": return "A - C# - E";
+                case "Bmaj": return "B - D# - F#";
+                case "Amin": return "A - C - E";
+                case "Bmin": return "B - D - F#";
+                case "Cmin": return "C - E♭ - G";
+                case "Dmin": return "D - F - A";
+                case "Emin": return "E - G - B";
+                case "Fmin": return "F - A♭ - C";
+                case "Gmin": return "G - B♭ - D";
+                default: return "";
+            }
+        }
+
+        function updateNoteButtons(chord) {
+            var notes = getChordNotes(chord).split(" - ");
+            var noteButtons = document.getElementsByClassName("note-button");
+
+            for (var i = 0; i < noteButtons.length; i++) {
+                noteButtons[i].innerHTML = notes[i];
+                noteButtons[i].setAttribute("data-link", "https://www.efekurucay.com/chords/notes/" + notes[i].toLowerCase());
+            }
+        }
+
+        function openLink(buttonNumber) {
+            var noteButton = document.getElementById("note" + buttonNumber);
+            var link = noteButton.getAttribute("data-link");
+
+            // Open the link in a new tab/window
+            window.open(link, "_blank");
+        }
+    </script>
+
+</body>
+</html>
