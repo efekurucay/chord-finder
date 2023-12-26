@@ -16,4 +16,4 @@ Future improvements
         Add a sound feature: I plan to add a sound feature to the chord finder, so that users can hear how the chords sound.
 
 Contact
-If you have any questions or feedback about the chord finder, please contact me at [MyWebsite](https://www.efekurucay.com/).
+If you have any questions or feedback about the chord finder, please contact me at [my website](https://www.efekurucay.com/).
